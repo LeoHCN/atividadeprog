@@ -62,7 +62,7 @@ export default function FormularioCadProduto(props) {
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="email">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="teste@teste.com.br" required />
+          <Form.Control type="email" placeholder="teste@teste.com.br" required />
           <Form.Control.Feedback type="invalid">Por favor informe o email corretamente!!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >

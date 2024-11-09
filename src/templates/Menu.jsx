@@ -11,6 +11,7 @@ export default function Menu(props){
           <Nav className="me-auto">
             <NavDropdown title="Cadastros" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.2">Produtos</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Clientes</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

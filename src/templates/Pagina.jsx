@@ -4,7 +4,7 @@ import Menu from "./Menu";
 
 export default function Pagina(props){
   return(
-    <Container>
+    <Container style={{padding:5}}>
       <Cabecalho texto="Sistema de Controle de Livros"/>
       <Menu/>
       {
