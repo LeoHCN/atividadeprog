@@ -3,6 +3,7 @@ import TelaCadastroCliente from "./Telas/TelaCadastroCliente.jsx";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Tela404 from "./Telas/Tela404.jsx";
 import TelaMenu from "./Telas/TelaMenu.jsx";
+import TelaLogin from "./Telas/TelaLogin.jsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/cadastroProdutos" element={<TelaCadastroProduto />}></Route>
           <Route path="/cadastroClientes" element={<TelaCadastroCliente />}></Route>
           <Route path="*" element={<Tela404/>}></Route>
+          <Route path="/login" element={<TelaLogin/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

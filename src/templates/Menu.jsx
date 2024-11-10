@@ -11,7 +11,7 @@ export default function Menu(props){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Cadastros" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#" as={Link} to={"/cadastroProdutos"}>Produtos</NavDropdown.Item>
+              <NavDropdown.Item href="#" as={Link} to={"/cadastroProdutos"}>Livros</NavDropdown.Item>
               <NavDropdown.Item href="#" as={Link} to={"/cadastroClientes"}>Clientes</NavDropdown.Item>
             </NavDropdown>
           </Nav>
