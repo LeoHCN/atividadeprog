@@ -18,7 +18,6 @@ export default function FormularioCadCliente(props) {
   return (
     <Form validated={validado} noValidate className="border p-4" onSubmit={Cadastrar}>
       <Row className="mb-3">
-      <h3>Dados Pessoais:</h3>
         <Form.Group as={Col} md="12" controlId="nomeCliente">
           <Form.Label>Nome Completo:</Form.Label>
           <Form.Control
@@ -59,7 +58,7 @@ export default function FormularioCadCliente(props) {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="sexo">
-          <Form.Label>Informe seu sexo:</Form.Label>
+          <Form.Label>Informe o sexo:</Form.Label>
           <Form.Select aria-label="Default select example">
             <option value="1">Masculino</option>
             <option value="2">Feminino</option>
@@ -83,33 +82,6 @@ export default function FormularioCadCliente(props) {
           placeholder="teste@teste.com.br" 
           required />
           <Form.Control.Feedback type="invalid">Por favor informe seu email!!!</Form.Control.Feedback>
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <h3>Dados Profissionais:</h3>
-      <Form.Group as={Col} md="4" controlId="profissao">
-          <Form.Label>Profissão:</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Informe sua profissão" 
-          required />
-          <Form.Control.Feedback type="invalid">Por favor informe sua profissão!!!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="cargo">
-          <Form.Label>Cargo:</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="informe seu cargo" 
-          required />
-          <Form.Control.Feedback type="invalid">Por favor informe sua cargo!!!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="empresa">
-          <Form.Label>Empresa:</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Informe sua empresa" 
-          required />
-          <Form.Control.Feedback type="invalid">Por favor informe sua empresa!!!</Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Button type="submit" className="text-center">Cadastrar</Button>

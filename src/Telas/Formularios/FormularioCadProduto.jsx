@@ -3,13 +3,13 @@ import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
 
 export default function FormularioCadProduto(props) {
-  
-  const [validado,setValidado] = useState(false);
-  function Cadastrar(evento){
+
+  const [validado, setValidado] = useState(false);
+  function Cadastrar(evento) {
     const formulario = evento.currentTarget;
-    if(formulario.checkValidity()){
+    if (formulario.checkValidity()) {
       setValidado(false);
-    }else{
+    } else {
       setValidado(true);
     }
     evento.preventDefault();
@@ -55,21 +55,28 @@ export default function FormularioCadProduto(props) {
           <Form.Control type="number" placeholder="Valor do livro" required />
           <Form.Control.Feedback type="invalid">Por favor informe o valor do livro</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group as={Col} md="4" controlId="contato">
           <Form.Label>Contato(Telefone)</Form.Label>
           <Form.Control type="text" placeholder="Telefone" required />
           <Form.Control.Feedback type="invalid">Por favor informe o telefone</Form.Control.Feedback>
         </Form.Group>
+
+
         <Form.Group as={Col} md="4" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" placeholder="teste@teste.com.br" required />
           <Form.Control.Feedback type="invalid">Por favor informe o email corretamente!!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
+
+
+        <Form.Group className="mb-3" controlId="sinopse">
           <Form.Label>Sinopse</Form.Label>
           <Form.Control as="textarea" rows={3} required />
           <Form.Control.Feedback type="invalid">Por favor informe a sinopse!!</Form.Control.Feedback>
         </Form.Group>
+        
       </Row>
       <Button type="submit" className="text-center">Cadastrar</Button>
     </Form>
