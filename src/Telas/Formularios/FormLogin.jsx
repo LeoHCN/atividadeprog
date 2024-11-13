@@ -1,51 +1,52 @@
-import { Container, Form, Button } from "react-bootstrap";
-// import { ContextoUsuario } from "../../App";
-// import { useContext, useRef } from "react";
+import { Container, Form, Button, Col } from "react-bootstrap";
+import { ContextoUsuario } from "../../App";
+import { useContext, useRef } from "react";
+
 export default function FormLogin(props) {
-  // const { usuario, setUsuario } = useContext(ContextoUsuario);
-  // const emailRef = useRef();
-  // const senhaRef = useRef();
 
-  // function processarLogin(evento){
-  //     //extrair os valores dos inputs informados pelo usuário
-  //     const email = emailRef.current.value;
-  //     const senha = senhaRef.current.value;
+  const { usuario, setUsuario } = useContext(ContextoUsuario);
+  const emailRef = useRef();
+  const senhaRef = useRef();
 
-  //     if (email == 'admin@admin.com' && senha == '123'){
-  //         setUsuario({
-  //             email: email,
-  //             logado: true
-  //         });
-  //     }
-  //     evento.preventDefault();
-  //     evento.stopPropagation(); //impedir que o evento torne-se visível por outros observadores
-  // }
-
+  function processarLogin(evento) {
+    const email = emailRef.current.value;
+    const senha = senhaRef.current.value;
+    if (email === "leo@admin.com" && senha === "1234") {
+      setUsuario({ "email": email, "logado": true });
+    }
+    evento.preventDefault();
+    evento.stopPropagation();
+  }
   return (
     <Container className="border m-2 p-2">
-      <Form >
-        <Form.Group className="mb-3" controlId="email">
+      <Form onSubmit={processarLogin}>
+        <Form.Group as={Col} className="mb-3 md-12" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            placeholder="email"
+            placeholder="Informe seu e-mail..."
+            ref={emailRef}
+            required
           />
           <Form.Text className="text-muted">
-            Nunca compartilhe suas credenciais de acesso.
+            Nunca compartilhe suas informações de login!!!
           </Form.Text>
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="senha">
+        <Form.Group controlId="senha">
           <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
-            placeholder="digite sua senha"
+            placeholder="Digite sua senha..."
+            ref={senhaRef}
+            required
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
+        <div className="d-flex justify-content-center aling-items-center">
+          <Button className="m-2 p-2 w-100 text-center" variant="primary" type="submit">
+            Login
+          </Button>
+        </div>
       </Form>
-    </Container>
+    </Container >
   );
 }
