@@ -17,15 +17,16 @@ export default function FormularioCadProduto(props) {
   }
   return (
     <Form validated={validado} noValidate className="border p-4" onSubmit={Cadastrar}>
+
       <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="nome">
-          <Form.Label>Nome do livro</Form.Label>
+        <Form.Group as={Col} md="4" controlId="codigo">
+          <Form.Label>Código:</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Nome do livro"
+            placeholder="Codigo"
           />
-          <Form.Control.Feedback type="invalid">Por favor informe o nome do livro</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">Por favor, informe o Código!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="autor">
           <Form.Label>Autor do livro</Form.Label>
@@ -47,6 +48,18 @@ export default function FormularioCadProduto(props) {
             />
             <Form.Control.Feedback type="invalid">Por favor informe o nome do anunciante</Form.Control.Feedback>
           </InputGroup>
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} md="12" controlId="nome">
+          <Form.Label>Nome do livro</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Nome do livro"
+          />
+          <Form.Control.Feedback type="invalid">Por favor informe o nome do livro</Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Row className="mb-3">
@@ -76,7 +89,7 @@ export default function FormularioCadProduto(props) {
           <Form.Control as="textarea" rows={3} required />
           <Form.Control.Feedback type="invalid">Por favor informe a sinopse!!</Form.Control.Feedback>
         </Form.Group>
-        
+
       </Row>
       <Button type="submit" className="text-center">Cadastrar</Button>
     </Form>

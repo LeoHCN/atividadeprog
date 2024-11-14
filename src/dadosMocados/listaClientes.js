@@ -1,30 +1,39 @@
 export const listaClientes = [
   {
-    nome: "Leonardo",
-    datanasc: "03/01/2001",
+    nomeCliente: "Leonardo",
+    datanasc: "2001-01-03",
     cpf: "46073815867",
     rg: "123987456",
     sexo: "Masculino",
-    telefone: "1897023475",
-    email: "leo@leo.com"
+    telCliente: "1897023475",
+    emailCliente: "leo@leo.com",
+    cidade: "Presidente Prudente",
+    estado: "SP",
+    cep: "19500-000"
   },
   {
-    nome: "Maria",
-    datanasc: "23/06/1999",
+    nomeCliente: "Maria",
+    datanasc: "1999-12-31",
     cpf: "99999999999",
     rg: "999999999",
     sexo: "Feminino",
-    telefone: "9999999999",
-    email: "maria@maria.com"
+    telCliente: "9999999999",
+    emailCliente: "maria@maria.com",
+    cidade: "Sao Paulo",
+    estado: "SP",
+    cep: "00000-000"
   },
   {
-    nome: "Bianca",
-    datanasc: "25/10/2000",
+    nomeCliente: "Bianca",
+    datanasc: "2000-01-01",
     cpf: "99999999999",
     rg: "999999999",
     sexo: "Feminino",
-    telefone: "9999999999",
-    email: "bianca@bianca.com"
+    telCliente: "9999999999",
+    emailCliente: "bianca@bianca.com",
+    cidade: "Sao Paulo",
+    estado: "SP",
+    cep: "11000-100"
   }
 
 ];
