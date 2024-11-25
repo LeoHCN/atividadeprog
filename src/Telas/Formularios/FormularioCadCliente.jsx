@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { cadastrarCliente, alterarCliente } from "../../services/servicoClientes";
 
 
 export default function FormularioCadCliente(props) {
@@ -14,71 +15,63 @@ export default function FormularioCadCliente(props) {
       ...cliente,
       [nome]: valor
     });
-    console.log(nome);
   }
-
   function Cadastrar(evento) {
-    const formulario = evento.currentTarget;
+    const formulario = evento.currentTarget; //aquele que disparou o evento
     if (formulario.checkValidity()) {
       setValidado(false);
       if (!props.modoEdicao) {
-        props.listaClientes.push(cliente);
-        props.setExibirTabela(true);
-      }
-      else{
-        const indice = props.listaClientes.findIndex((c) => c.cpf === cliente.cpf);
-        props.listaClientes[indice] = cliente;
-        props.setModoEdicao(false);
-        props.setClienteSelecionado({
-          nome: "",
-          datanasc: "",
-          cpf: "",
-          rg: "",
-          sexo: "",
-          telCliente: "",
-          emailCliente: "",
-          cidade: "",
-          estado: "",
-          cep: "",
+        //adicionar um cliente na lista
+        cadastrarCliente(cliente).then((resposta) => {
+          if (resposta.status) {
+            props.listaClientes.push(cliente);
+            props.setExibirTabela(true);
+          }
+          else {
+            alert(resposta.mensagem);
+          }
+        }).catch((erro) => {
+          alert("Não foi possível se comunicar com o backend:" + erro.message);
         });
-        props.setExibirTabela(true);
       }
-    } else {
+      else {
+        alterarCliente(cliente).then((resposta) => {
+          if (resposta.status) {
+            //atualizar o cliente na lista
+            const indice = props.listaClientes.findIndex((cli) => { return cli.cpf == cliente.cpf });
+            props.listaClientes[indice] = cliente;
+            props.setModoEdicao(false);
+            props.setClienteSelecionado({
+              cpf: "",
+              nome: "",
+              rg: "",
+              sexo: "",
+              telefone: "",
+              email: "",
+              cidade: "",
+              estado: "",
+              cep: "",
+            });
+            props.setExibirTabela(true);
+          }
+          else {
+            alert(resposta.mensagem);
+          }
+        }).catch((erro) => {
+          alert("Não foi possível se comunicar com o backend:" + erro.message);
+        });
+      }
+    }
+    else {
       setValidado(true);
     }
     evento.preventDefault();
     evento.stopPropagation();
   }
+
   return (
     <Form validated={validado} noValidate className="border p-4" onSubmit={Cadastrar}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="12">
-          <Form.Label>Nome Completo:</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Nome completo..."
-            id="nomeCliente"
-            name="nomeCliente"
-            value={cliente.nomeCliente}
-            onChange={atualizarCliente}
-          />
-          <Form.Control.Feedback type="invalid">Por favor informe seu nome!!!</Form.Control.Feedback>
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4">
-          <Form.Label>Data de nascimento:</Form.Label>
-          <Form.Control
-            required
-            type="date"
-            id="datanasc"
-            name="datanasc"
-            value={cliente.datanasc}
-            onChange={atualizarCliente}
-          />
-          <Form.Control.Feedback type="invalid">Por favor informe a data de nascimento!!!</Form.Control.Feedback>
-        </Form.Group>
         <Form.Group as={Col} md="4">
           <Form.Label>CPF:</Form.Label>
           <Form.Control
@@ -91,6 +84,22 @@ export default function FormularioCadCliente(props) {
             onChange={atualizarCliente}
           />
           <Form.Control.Feedback type="invalid">Por favor informe seu cpf!!!</Form.Control.Feedback>
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} md="8">
+          <Form.Label>Nome Completo:</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Nome completo..."
+            id="nome"
+            name="nome"
+            value={cliente.nome}
+            onChange={atualizarCliente}
+          />
+          <Form.Control.Feedback type="invalid">Por favor informe seu nome!!!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4">
           <Form.Label>RG:</Form.Label>
@@ -127,9 +136,9 @@ export default function FormularioCadCliente(props) {
             type="tel"
             placeholder="(18)99999-9999"
             required
-            id="telCliente"
-            name="telCliente"
-            value={cliente.telCliente}
+            id="telefone"
+            name="telefone"
+            value={cliente.telefone}
             onChange={atualizarCliente}
           />
           <Form.Control.Feedback type="invalid">Por favor informe seu telefone de contato!!!</Form.Control.Feedback>
@@ -140,9 +149,9 @@ export default function FormularioCadCliente(props) {
             type="email"
             placeholder="teste@teste.com.br"
             required
-            id="emailCliente"
-            name="emailCliente"
-            value={cliente.emailCliente}
+            id="email"
+            name="email"
+            value={cliente.email}
             onChange={atualizarCliente}
           />
           <Form.Control.Feedback type="invalid">Por favor informe seu email!!!</Form.Control.Feedback>
@@ -194,5 +203,5 @@ export default function FormularioCadCliente(props) {
         variant="secondary"
         onClick={() => { props.setExibirTabela(true); }}>Voltar</Button>
     </Form >
-  )
+  );
 }

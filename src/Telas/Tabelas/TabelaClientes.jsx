@@ -1,13 +1,22 @@
-import { Container, Table, Button } from "react-bootstrap";
+import { Container, Table, Button} from "react-bootstrap";
+import { excluirCliente } from "../../services/servicoClientes";
 
 export default function TabelaClientes(props) {
 
   function apagarCliente(cpf) {
     if (window.confirm("Tem certeza que deseja apagar o cliente?")) {
-      const listaNova = props?.listaClientes.filter((cliente) => {
-        return cliente.cpf != cpf;
+      excluirCliente(cpf).then((resposta) => {
+        if (resposta.status) {
+          const listaNova = props?.listaClientes.filter((cliente) => {
+            return cliente.cpf !== cpf;
+          });
+          props.setListaClientes(listaNova);
+        }else{
+          alert(resposta.mensagem);
+        }
+      }).catch((erro) => {
+        alert("Não foi possivel se comunicar com o servidor: " + erro.mensagem);
       });
-      props.setListaClientes(listaNova);
     }
   };
 
@@ -25,12 +34,11 @@ export default function TabelaClientes(props) {
           props.setModoEdicao(false);
           props.setClienteSelecionado({
             nome: "",
-            datanasc: "",
             cpf: "",
             rg: "",
             sexo: "",
-            telCliente: "",
-            emailCliente: "",
+            telefone: "",
+            email: "",
             cidade: "",
             estado: "",
             cep: ""
@@ -41,7 +49,6 @@ export default function TabelaClientes(props) {
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Data de Nascimento</th>
             <th>CPF</th>
             <th>RG</th>
             <th>Sexo</th>
@@ -58,13 +65,12 @@ export default function TabelaClientes(props) {
             props?.listaClientes.map((cliente) => {
               return (
                 <tr key={cliente.cpf}>
-                  <td>{cliente.nomeCliente}</td>
-                  <td>{cliente.datanasc}</td>
+                  <td>{cliente.nome}</td>
                   <td>{cliente.cpf}</td>
                   <td>{cliente.rg}</td>
                   <td>{cliente.sexo}</td>
-                  <td>{cliente.telCliente}</td>
-                  <td>{cliente.emailCliente}</td>
+                  <td>{cliente.telefone}</td>
+                  <td>{cliente.email}</td>
                   <td>{cliente.cidade}</td>
                   <td>{cliente.estado}</td>
                   <td>{cliente.cep}</td>
